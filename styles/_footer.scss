@@ -1,0 +1,183 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+footer {
+  background-color: $red;
+
+  .affiliations {
+    position: relative;
+    z-index: $z-index-bot;
+    padding: $section-block-small $section-inline-small;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: $max-width-small;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-32;
+
+    li {
+      max-height: 100px;
+
+      img {
+        width: 320px;
+      }
+    }
+
+    @include tablet() {
+      padding: $section-block-small $section-inline-medium;
+    }
+
+    @include desktop() {
+      padding: $section-block-small $section-inline-large;
+    }
+  }
+
+  .width-wrap {
+    z-index: $z-index-bot;
+    margin: 0 auto;
+    max-width: $max-width-large;
+    padding: 0 $section-inline-small $section-block-small $section-inline-small;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+
+    a,
+    p,
+    h3 {
+      color: $white;
+    }
+
+    h3 {
+      margin: 0 0 $spacing-16 0;
+      @include fontSize(p);
+      font-weight: 800;
+      text-transform: uppercase;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        border-radius: $border-xsmall;
+        width: 200px;
+        height: 2px;
+        background-color: $white;
+      }
+    }
+
+    .foot-top {
+      margin: 0 0 $spacing-48 0;
+      display: grid;
+      gap: $spacing-48;
+
+      a {
+        @include linkHover($white);
+      }
+
+      .foot-ctr {
+        nav ul {
+          display: grid;
+          gap: $spacing-8;
+
+          li a {
+            @include fontSize(p);
+            font-weight: 300;
+          }
+        }
+
+        .office-hrs {
+          display: grid;
+          gap: $spacing-8;
+
+          li p:nth-of-type(2) {
+            font-weight: 200;
+          }
+        }
+      }
+
+      @include desktop() {
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-24;
+        margin: 0 0 $spacing-64 0;
+      }
+    }
+
+    .foot-bot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: $spacing-16;
+
+      .foot-socials {
+        display: flex;
+        gap: $spacing-16;
+
+        a {
+          @include iconHover();
+        }
+      }
+
+      .back-to-top {
+        padding: $spacing-16;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        gap: $spacing-16;
+        @include iconHover();
+      }
+    }
+
+    .foot-svg {
+      position: absolute;
+      width: 140%;
+      height: 140%;
+      bottom: -80vh;
+      z-index: $z-index-maxbot;
+      right: -50vw;
+
+      @include desktop() {
+        width: 100%;
+        height: 60%;
+        right: auto;
+        bottom: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 40%) scale(3);
+      }
+    }
+
+    .copyright-svg {
+      margin: $spacing-32 0 0 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .copyright {
+      @include fontSize(tiny);
+      margin: $spacing-8 0 0 0;
+      max-width: none;
+      text-align: center;
+      font-weight: 200;
+    }
+
+    @include tablet() {
+      padding: $section-block-small $section-inline-medium;
+    }
+
+    @include desktop() {
+      min-height: 100vh;
+      max-height: 1200px;
+      padding: $section-block-small $section-inline-large;
+    }
+
+    @include monitor() {
+      height: 100vh;
+      min-height: auto;
+      max-height: 1000px;
+    }
+  }
+}
