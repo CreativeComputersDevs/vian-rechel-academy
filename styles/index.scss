@@ -1,0 +1,606 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+@include primaryButton();
+@include widthWrap();
+
+.hero {
+  margin: 0 auto;
+  background-color: transparent;
+
+  .width-wrap {
+    min-height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      color: $white;
+      @include fontSize(h3);
+      font-weight: 900;
+
+      @include tablet() {
+        font-size: 6rem;
+        line-height: 1;
+      }
+
+      @include desktop() {
+        font-size: 8rem;
+      }
+
+      span {
+        display: inline-block;
+        overflow: visible;
+        position: relative;
+        color: $yellow;
+
+        em {
+          width: 130%;
+          @include centerAbsolute();
+          z-index: $z-index-maxbot;
+          pointer-events: none;
+          svg {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    .btn-style {
+      position: absolute;
+      bottom: $section-block-medium;
+    }
+
+    .bg-vid {
+      position: absolute;
+      z-index: $z-index-maxbot;
+      inset: 0;
+      width: 100%;
+      min-height: 100vh;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4);
+      background-color: $black;
+    }
+
+    .vid-ctr {
+      width: 90%;
+      display: grid;
+      place-items: center;
+      position: fixed;
+      z-index: $z-index-maxtop;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: scale(0.7) translateY(120%);
+
+      &.show {
+        // ! Promotional Video In Animation
+        transform: scale(1) translateY(0);
+        pointer-events: visible;
+        opacity: 1;
+      }
+
+      .hero-vid {
+        width: 100%;
+        border-radius: $border-large;
+      }
+
+      .close-btn {
+        z-index: $z-index-maxtop;
+        top: -$spacing-24;
+        right: -$spacing-16;
+        position: absolute;
+        padding: $spacing-8;
+        border-radius: $border-large;
+        background-color: $red;
+        @include iconHover();
+
+        @include tablet() {
+          right: -$spacing-24;
+          padding: $spacing-16;
+        }
+      }
+
+      @include desktop() {
+        width: 75%;
+      }
+    }
+  }
+}
+
+.intro {
+  margin: 0 auto;
+  background-color: $red;
+
+  .width-wrap {
+    color: $white;
+
+    img {
+      width: 100%;
+      margin: 0 0 $spacing-16 0;
+      @include tablet() {
+        margin: 0 0 $spacing-32 0;
+      }
+    }
+
+    h2 {
+      @include fontSize(h4);
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0 0 $spacing-16 0;
+
+      @include tablet() {
+        @include fontSize(h2);
+      }
+
+      @include desktop() {
+        @include fontSize(h1);
+      }
+    }
+
+    p {
+      margin: 0 auto;
+      text-align: center;
+      font-weight: 300;
+
+      @include tablet() {
+        @include fontSize(h6);
+      }
+
+      @include desktop() {
+        @include fontSize(h5);
+      }
+    }
+
+    .btn-style {
+      width: fit-content;
+      margin: $spacing-32 auto 0 auto;
+      @include desktop() {
+        margin: $spacing-64 auto 0 auto;
+      }
+    }
+  }
+}
+
+.courses {
+  margin: auto;
+  background-color: $white;
+
+  .width-wrap {
+    color: $black;
+
+    h2 {
+      margin: 0 0 $spacing-24 0;
+      text-align: center;
+      @include fontSize(h5);
+      font-weight: 800;
+      text-transform: uppercase;
+      @include tablet() {
+        margin: 0 0 $spacing-32 0;
+        @include fontSize(h2);
+      }
+      @include desktop() {
+        margin: 0 0 $spacing-64 0;
+      }
+    }
+    .cards-ctr {
+      display: grid;
+      gap: $spacing-32;
+      position: relative;
+      z-index: $z-index-bot;
+
+      .courses-svg {
+        display: none;
+        @include desktop() {
+          display: block;
+          @include centerAbsolute();
+          z-index: $z-index-maxbot;
+        }
+      }
+
+      .info-card {
+        padding: $spacing-24;
+        background-color: $white;
+        border-radius: $border-xlarge;
+        border: $border-medium solid;
+
+        &.yellow {
+          border-color: $dark-yellow;
+        }
+
+        &.green {
+          border-color: $dark-green;
+        }
+
+        &.red {
+          border-color: $dark-red;
+        }
+
+        &.black {
+          border-color: $dark-black;
+        }
+
+        .card-img {
+          width: 120px;
+          height: 120px;
+
+          @include desktop() {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            width: 60%;
+            max-width: 550px;
+            height: auto;
+            @include centerAbsolute();
+            z-index: $z-index-maxbot;
+            pointer-events: none;
+
+            &.show {
+              // ! Card Fade In Animation
+              opacity: 1;
+            }
+          }
+        }
+
+        @include desktop() {
+          max-width: 360px;
+
+          &.yellow,
+          &.red {
+            justify-self: start;
+          }
+
+          &.black,
+          &.green {
+            justify-self: end;
+          }
+        }
+
+        .card-desc {
+          h3 {
+            @include fontSize(h6);
+            font-weight: 700;
+            margin: $spacing-16 0 $spacing-24 0;
+            @include desktop() {
+              margin: 0 0 $spacing-24 0;
+            }
+          }
+        }
+      }
+
+      @include tablet() {
+        gap: $spacing-64;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .btn-style {
+      width: fit-content;
+      margin: $spacing-32 auto 0 auto;
+      @include tablet() {
+        margin: $spacing-64 auto 0 auto;
+      }
+    }
+
+    @include desktop() {
+      padding: $section-block-large $section-inline-medium;
+    }
+  }
+}
+
+.homeschool {
+  background-color: $yellow;
+
+  .width-wrap {
+    color: $black;
+    display: grid;
+    gap: $spacing-24;
+
+    .hs-img {
+      justify-self: right;
+      object-fit: contain;
+      width: 200px;
+      @include tablet() {
+        width: 400px;
+      }
+      @include desktop() {
+        grid-row: 2;
+        grid-column: 1;
+        width: auto;
+        height: auto;
+      }
+    }
+
+    .hs-desc {
+      h2 {
+        @include fontSize(h5);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin: 0 0 $spacing-8 0;
+        @include tablet() {
+          @include fontSize(h2);
+          margin: 0 0 $spacing-24 0;
+        }
+      }
+      p {
+        @include tablet() {
+          @include fontSize(h5);
+        }
+        @include desktop() {
+          @include fontSize(h3);
+        }
+      }
+
+      @include desktop() {
+        grid-column: span 2;
+      }
+    }
+
+    .hs-features {
+      display: grid;
+      gap: $spacing-24;
+      .hs-list {
+        display: grid;
+        gap: $spacing-16;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: $spacing-16;
+          svg {
+            width: 24px;
+            height: 24px;
+            @include tablet() {
+              width: auto;
+              height: auto;
+            }
+          }
+          p {
+            font-weight: 600;
+            @include tablet() {
+              @include fontSize(h5);
+            }
+            @include desktop() {
+              @include fontSize(h4);
+            }
+          }
+          @include tablet() {
+            gap: $spacing-24;
+          }
+        }
+
+        @include tablet() {
+          gap: $spacing-32;
+        }
+      }
+      .btn-style {
+        justify-self: right;
+        height: fit-content;
+        width: fit-content;
+      }
+      @include desktop() {
+        grid-column: 2;
+        gap: $spacing-48;
+      }
+    }
+
+    @include tablet() {
+      gap: $spacing-64;
+    }
+
+    @include desktop() {
+      grid-template-columns: 500px 1fr;
+      align-items: center;
+    }
+  }
+}
+
+.testimonials {
+  background-color: $green;
+
+  .width-wrap {
+    color: $white;
+
+    h2 {
+      @include fontSize(h5);
+      font-weight: 800;
+      margin: 0 0 $spacing-32 0;
+      text-transform: uppercase;
+
+      @include tablet() {
+        margin: 0 0 $spacing-64 0;
+        @include fontSize(h3);
+      }
+
+      @include desktop() {
+        @include fontSize(h2);
+      }
+    }
+
+    .test-info {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-16;
+
+      @include tablet() {
+        gap: $spacing-24;
+      }
+
+      @include desktop() {
+        flex-direction: row;
+        gap: $spacing-64;
+      }
+    }
+
+    svg {
+      @include tablet() {
+        width: 79px;
+        height: 65px;
+      }
+
+      @include desktop() {
+        flex: 1;
+        width: 127px;
+        height: 104px;
+      }
+    }
+
+    .test-content {
+      flex: 10;
+    }
+
+    .test-desc {
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+    }
+
+    .indi-desc {
+      grid-area: 1 / 1 / 2 / 2;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20%);
+      transition: opacity 0.2s 0.1s ease, visibility 0.2s ease,
+        transform 0.4s ease;
+
+      &.show {
+        // ! Active Testimonial Animation
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      p {
+        @include fontSize(h6);
+        max-width: $max-width-xsmall;
+        font-weight: 400;
+        margin: 0 0 $spacing-24 0;
+
+        @include tablet() {
+          @include fontSize(h5);
+          max-width: $max-width-small;
+          font-weight: 300;
+          margin: 0 0 $spacing-32 0;
+        }
+
+        @include desktop() {
+          @include fontSize(h3);
+          max-width: $max-width-medium;
+          margin: 0 0 $spacing-48 0;
+        }
+      }
+
+      .indi-details {
+        display: flex;
+        gap: $spacing-16;
+        align-items: center;
+        .indi-img {
+          width: $spacing-64 * 1.2;
+          height: $spacing-64 * 1.2;
+          @include tablet() {
+            width: $spacing-64 * 1.5;
+            height: $spacing-64 * 1.5;
+          }
+          @include desktop() {
+            width: $spacing-64 * 2;
+            height: $spacing-64 * 2;
+          }
+        }
+
+        cite {
+          font-style: normal;
+          @include fontSize(p);
+          font-weight: 600;
+
+          @include tablet() {
+            @include fontSize(h4);
+          }
+
+          @include desktop() {
+            @include fontSize(h3);
+          }
+        }
+
+        h3 {
+          @include fontSize(tag);
+          font-weight: 300;
+
+          @include tablet() {
+            font-weight: 400;
+            @include fontSize(h6);
+          }
+
+          @include desktop() {
+            @include fontSize(h5);
+          }
+        }
+        @include desktop() {
+          gap: $spacing-24;
+        }
+      }
+    }
+
+    .slider-btns {
+      margin: $spacing-32 0 0 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: $spacing-16;
+
+      .left-btn,
+      .right-btn {
+        padding: $spacing-8;
+        background-color: $white;
+        border-radius: $border-large;
+        @include iconHover();
+
+        @include tablet() {
+          padding: $spacing-16;
+        }
+      }
+
+      .test-btns-ctr {
+        display: flex;
+        gap: $spacing-16;
+        align-items: center;
+
+        .test-btn {
+          width: $spacing-24;
+          height: $spacing-24;
+          display: grid;
+          place-items: center;
+          background-color: $white;
+          border-radius: $border-large;
+          position: relative;
+          @include iconHover();
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            transform: scale(0.5);
+            border-radius: $border-medium;
+            background-color: $black;
+            transition: width 0.2s ease, height 0.2s ease;
+          }
+
+          &.show::before {
+            // ! Active Testimonial Individual Button Animation
+            width: $spacing-16;
+            height: $spacing-16;
+          }
+        }
+      }
+
+      @include desktop() {
+        margin: $spacing-64 0 0 0;
+      }
+    }
+  }
+}
