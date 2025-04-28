@@ -1,0 +1,187 @@
+@use "variables" as *;
+
+@mixin tablet() {
+  // ! Tablet Breakpoint
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  // ! Desktop Breakpoint
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin monitor() {
+  // ! Wide Breakpoint
+  @media (min-width: 2000px) {
+    @content;
+  }
+}
+
+$font-sizes: (
+  // * Font Sizes and Line Height Pairs
+  // Heading 1: font-size 72px, line-height 120%
+  h1: (4.5rem, 1.1),
+  // Heading 2: font-size 56px, line-height 120%
+  h2: (3.5rem, 1.2),
+  // Heading 3: font-size 48px, line-height 120%
+  h3: (3rem, 1.25),
+  // Heading 4: font-size 40px, line-height 140%
+  h4: (2.5rem, 1.3),
+  // Heading 5: font-size 32px, line-height 140%
+  h5: (2rem, 1.4),
+  // Heading 6: font-size 24px, line-height 140%
+  h6: (1.5rem, 1.4),
+  // Paragraph: font-size 18px, line-height 150%
+  p: (1.125rem, 1.5),
+  // Tags/Captions/Keywords: font-size 16px, line-height 150%
+  tag: (1rem, 1.5),
+  // Tiny Text: font-size 14px, line-height 160%
+  tiny: (0.875rem, 1.6)
+);
+
+@mixin fontSize($type) {
+  // ! Font Size Mixin
+  // ? $size: Map all the font-sizes with the desired type
+  $size: map-get($font-sizes, $type);
+  font-size: nth($size, 1);
+  line-height: nth($size, 2);
+}
+
+@mixin linkHover($color) {
+  // ! Links Underline Animation
+  // ? $color: Use a color for the color palette for the line
+  &:hover span::before {
+    width: 100%;
+  }
+
+  span {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -$spacing-4;
+      width: 0;
+      height: 1.5px;
+      border-radius: $border-large;
+      background-color: $color;
+      transition: width 0.2s ease;
+    }
+  }
+}
+
+@mixin iconHover() {
+  // ! Icons or Secondary Buttons Animation
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(0.9);
+  }
+}
+
+// ! NOTE: For Secondary Buttons use padding-8 on mobile and padding-16 on tablet
+
+@mixin primaryButton() {
+  // ! Primary Button
+  .btn-style {
+    // ? You may add a color class to choose a corresponding button design
+    // * Styling for primary buttons/links
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-8 $spacing-16;
+    gap: $spacing-8;
+    text-transform: lowercase;
+    font-weight: 700;
+    @include fontSize(p);
+    border-radius: $border-large;
+
+    &.yellow {
+      background-color: $yellow;
+      color: $black;
+      fill: $black;
+    }
+
+    &.green {
+      background-color: $green;
+      color: $white;
+      fill: $white;
+    }
+
+    &.white {
+      background-color: $white;
+      color: $black;
+      fill: $black;
+    }
+
+    &.red {
+      background-color: $red;
+      color: $white;
+      fill: $white;
+    }
+
+    &:hover .btn-box-ctr .btn-box {
+      transform: rotateZ(180deg) scale(0.5);
+    }
+
+    .btn-box-ctr {
+      width: $spacing-16;
+      height: $spacing-16;
+      display: grid;
+      place-items: center;
+      .btn-box {
+        width: inherit;
+        height: inherit;
+        border-radius: $border-small;
+        transition: transform 0.8s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+      }
+    }
+  }
+}
+
+@mixin widthWrap() {
+  .width-wrap {
+    // ? You may need to adjust the max-width depending on the design
+    // * Set the maximum width for the section's content
+    margin: 0 auto;
+    max-width: $max-width-large;
+    padding: $section-block-small $section-inline-small;
+    @include tablet() {
+      padding: $section-block-medium $section-inline-medium;
+    }
+    @include desktop() {
+      padding: $section-block-large $section-inline-large;
+    }
+  }
+}
+
+@mixin listStyle() {
+  // ! Styling for Unordered list
+  // ? You still need to adjust some styling depending on the viewport size
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::before {
+      content: "";
+      display: inline-block;
+      margin: 0 $spacing-8 0 0;
+      left: 0;
+      top: 0;
+      width: $spacing-8;
+      height: $spacing-8;
+      border-radius: $border-small;
+      background-color: $black;
+    }
+  }
+}
+
+@mixin centerAbsolute() {
+  // ! Center an absolute element to the container
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
