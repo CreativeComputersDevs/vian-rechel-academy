@@ -1,0 +1,123 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: $red $white;
+}
+
+body {
+  background-color: $white;
+  &.hide {
+    // ? You may use this if you want spotlight on an element (e.g. image gallery spotlight, section spotlight, video spotlight)
+    // * This indicates there's a spotlight for a content
+    overflow: hidden;
+    .overlay {
+      pointer-events: visible;
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+  }
+}
+
+.overlay {
+  inset: 0;
+  z-index: $z-index-maxtop;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  right: 0;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  background-color: #1a1a1aba;
+  transition: opacity 0.2s ease;
+
+  &.behind {
+    // * When the navigation is displayed
+    z-index: $z-index-top;
+    display: none;
+    @include tablet() {
+      display: block;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  font-weight: 400;
+  @include fontSize(p);
+  font-style: italic;
+  text-transform: none;
+
+  &.icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+p {
+  @include fontSize(p);
+  overflow-wrap: break-word;
+  max-width: 70ch;
+}
+
+button {
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+section {
+  background-color: $white;
+}
+
+.contact-info {
+  display: grid;
+  gap: $spacing-24;
+
+  li {
+    p {
+      color: $white;
+      @include fontSize(tag);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    a {
+      max-width: 400px;
+      @include fontSize(p);
+      font-weight: 200;
+      color: $white;
+      @include linkHover($white);
+    }
+  }
+}
+
+@import "header";
+@import "footer";
