@@ -1,0 +1,145 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+@include widthWrap();
+
+.hero {
+  margin: 0 auto;
+  background-color: $black;
+  position: relative;
+  overflow: hidden;
+
+  .hero-img {
+    z-index: $z-index-bot;
+    height: 120%;
+    position: absolute;
+    object-fit: cover;
+    left: -$spacing-16;
+    top: 48vh;
+    transform: rotateZ(4deg) scale(1.05);
+    filter: brightness(0.5);
+    pointer-events: none;
+  }
+
+  .width-wrap {
+    min-height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      z-index: 3;
+      text-align: center;
+      text-transform: uppercase;
+      color: $white;
+      @include fontSize(h3);
+      font-weight: 900;
+
+      @include tablet() {
+        @include fontSize(h2);
+      }
+
+      @include desktop() {
+        @include fontSize(h1);
+      }
+
+      span {
+        display: inline-block;
+        overflow: visible;
+        position: relative;
+        color: $yellow;
+
+        em {
+          width: 130%;
+          @include centerAbsolute();
+          z-index: $z-index-maxbot;
+          pointer-events: none;
+          svg {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.faculty {
+  margin: 0 auto;
+  background-color: $white;
+
+  .width-wrap {
+    max-width: $max-width-medium;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-32;
+
+    .teacher-ctr {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .teacher-img {
+        width: 100%;
+        height: 100%;
+        padding: 24px 0 0 0;
+        margin: 0 0 $spacing-8 0;
+        max-width: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        background-color: $yellow;
+        border-radius: $border-xlarge;
+        overflow: hidden;
+
+        img {
+          max-width: none;
+          max-height: 140px;
+
+          @include tablet() {
+            max-height: 360px;
+          }
+        }
+
+        @include tablet() {
+          max-width: 240px;
+        }
+      }
+
+      .teacher-content {
+        text-align: center;
+
+        h3 {
+          color: $green;
+          font-weight: 700;
+          @include fontSize(tag);
+          @include tablet() {
+            @include fontSize(h6);
+          }
+        }
+        h4 {
+          color: $red;
+          font-weight: 500;
+          @include fontSize(tiny);
+          @include tablet() {
+            @include fontSize(p);
+          }
+        }
+      }
+    }
+
+    @include tablet() {
+      gap: $spacing-32;
+    }
+
+    @include desktop() {
+      padding: $section-block-medium $section-inline-medium;
+      gap: $spacing-64;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
