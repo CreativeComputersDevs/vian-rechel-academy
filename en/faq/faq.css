@@ -1,0 +1,77 @@
+  
+  /* FAQ Container */
+  .faq-container {
+    max-width: 1250px;
+    margin: 0 auto ; /* positions the thing to... yknow. */
+    padding: 20px;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .faq-item {
+    margin-bottom: 10px;
+    background-color: #12533F;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-item:first-child {
+    border-top-left-radius: 25px;
+  }
+  
+  /* FAQ Question and Answer */
+  .faq-question {
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: font-size 0.3s ease, color 0.3s ease;
+  }
+  
+  .faq-text {
+    font-size: 1rem; 
+    color: #333; 
+    transition: font-size 0.3s ease, color 0.3s ease; 
+  }
+  
+  .faq-answer.visible .faq-text {
+    font-size: 2rem; 
+    color: #12533F; 
+  }
+  
+  .faq-number {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-right: 10px;
+    transition: font-size 0.3s ease, color 0.3s ease;
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+  }
+  
+  .faq-answer.visible {
+    margin: 50px 50px 100px 50px;
+  }
+  
+  button.toggle {
+    font-size: 3.25rem;
+    background: none;
+    border: none;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button.toggle.active {
+    transform: rotate(45deg);
+  }
+
+
