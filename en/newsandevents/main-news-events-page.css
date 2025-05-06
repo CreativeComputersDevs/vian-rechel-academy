@@ -12,6 +12,7 @@
   }
   
   .newseventscard {
+    position: relative;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -108,6 +109,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-
+    z-index: 1;
   }
   
